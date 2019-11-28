@@ -234,15 +234,25 @@ void thread_11(void)
 K_THREAD_STACK_DEFINE(thread_12_stack_area, STACKSIZE);
 struct k_thread thread_12_thread_data;
 extern void thread_12(void);
+ /**
+ * @brief Test Mutex tests
+ *
+ * @defgroup kernel_mutex_tests Mutex Tests
+ *
+ * @ingroup all_tests
+ *
+ * @{
+ */
 
 /**
  *
  * @brief Main thread to test thread_mutex_xxx interfaces
- *
  * This thread will lock on mutex_1, mutex_2, mutex_3 and mutex_4. It later
  * recursively locks private_mutex, releases it, then re-locks it.
- *
- * @return  N/A
+ * @ingroup kernel_mutex_tests
+ * @verify{@req{283}}
+ * @verify{@req{284}}
+ * @verify{@req{285}}
  */
 
 void test_mutex(void)
@@ -414,6 +424,10 @@ K_THREAD_DEFINE(THREAD_09, STACKSIZE, thread_09, NULL, NULL, NULL,
 
 K_THREAD_DEFINE(THREAD_11, STACKSIZE, thread_11, NULL, NULL, NULL,
 		11, K_USER, K_NO_WAIT);
+
+/**
+ * @}
+ */
 
 /*test case main entry*/
 void test_main(void)

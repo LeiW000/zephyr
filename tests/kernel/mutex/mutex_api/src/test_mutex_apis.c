@@ -120,6 +120,7 @@ void test_mutex_reent_lock_timeout_fail(void)
 	tmutex_test_lock_timeout(&kmutex, tThread_entry_lock_no_wait);
 }
 
+
 void test_mutex_reent_lock_timeout_pass(void)
 {
 	/**TESTPOINT: test k_mutex_init mutex*/
@@ -128,6 +129,13 @@ void test_mutex_reent_lock_timeout_pass(void)
 	/**TESTPOINT: test K_MUTEX_DEFINE mutex*/
 	tmutex_test_lock_timeout(&kmutex, tThread_entry_lock_no_wait);
 }
+/**
+ *
+ * @brief test mutex lock/unlock interfaces
+ * @ingroup kernel_mutex_tests
+ * @verify{@req{285}}
+ * @verify{@req{286}}
+ */
 
 void test_mutex_lock_unlock(void)
 {

@@ -89,7 +89,13 @@ static void tmutex_test_lock_unlock(struct k_mutex *pmutex)
 	k_mutex_unlock(pmutex);
 }
 
-/*test cases*/
+/**
+ *
+ * @brief test mutex forever wait.
+ * @ingroup kernel_mutex_tests
+ * @verify{@req{285}}
+ */
+
 void test_mutex_reent_lock_forever(void)
 {
 	/**TESTPOINT: test k_mutex_init mutex*/
@@ -102,6 +108,13 @@ void test_mutex_reent_lock_forever(void)
 	k_thread_abort(&tdata);
 }
 
+/**
+ *
+ * @brief test mutex no_wait.
+ * @ingroup kernel_mutex_tests
+ * @verify{@req{285}}
+ */
+
 void test_mutex_reent_lock_no_wait(void)
 {
 	/**TESTPOINT: test k_mutex_init mutex*/
@@ -110,6 +123,14 @@ void test_mutex_reent_lock_no_wait(void)
 	/**TESTPOINT: test K_MUTEX_DEFINE mutex*/
 	tmutex_test_lock(&kmutex, tThread_entry_lock_no_wait);
 }
+
+/**
+ *
+ * @brief test mutex timeout failure.
+ * @ingroup kernel_mutex_tests
+ * @verify{@req{285}}
+ * @verify{@req{286}}
+ */
 
 void test_mutex_reent_lock_timeout_fail(void)
 {
@@ -120,14 +141,19 @@ void test_mutex_reent_lock_timeout_fail(void)
 	tmutex_test_lock_timeout(&kmutex, tThread_entry_lock_no_wait);
 }
 
+/**
+ *
+ * @brief test mutex timeout pass.
+ * @ingroup kernel_mutex_tests
+ * @verify{@req{285}}
+ * @verify{@req{286}}
+ */
 
 void test_mutex_reent_lock_timeout_pass(void)
 {
 	/**TESTPOINT: test k_mutex_init mutex*/
 	tmutex_test_lock_timeout(&mutex, tThread_entry_lock_timeout_pass);
 
-	/**TESTPOINT: test K_MUTEX_DEFINE mutex*/
-	tmutex_test_lock_timeout(&kmutex, tThread_entry_lock_no_wait);
 }
 /**
  *

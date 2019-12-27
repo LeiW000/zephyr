@@ -253,6 +253,7 @@ extern void thread_12(void);
  * @verify{@req{283}}
  * @verify{@req{284}}
  * @verify{@req{285}}
+ * @verify{@req{286}}
  */
 
 void test_mutex(void)
@@ -371,6 +372,13 @@ void test_mutex(void)
 	TC_PRINT("Recursive locking tests successful\n");
 }
 
+/**
+ *
+ * @brief Test mutex error handling.
+ * @ingroup kernel_mutex_tests
+ * @verify{@req{285}}
+ */
+
 void test_supervisor_access(void)
 {
 	int rv;
@@ -392,6 +400,15 @@ void test_supervisor_access(void)
 	rv = sys_mutex_unlock(&bad_count_mutex);
 	zassert_true(rv == -EINVAL, "mutex wasn't locked");
 }
+
+/**
+ *
+ * @brief Test access permission of mutex objec in user mode.
+ * Verify the mutex object created in kernel mode can be access
+ * in use mode.
+ * @ingroup kernel_mutex_tests
+ * @verify{@req{285}}
+ */
 
 void test_user_access(void)
 {

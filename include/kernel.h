@@ -3250,7 +3250,7 @@ struct k_mutex {
  * @code extern struct k_mutex <name>; @endcode
  *
  * @param name Name of the mutex.
- * @req K-MUTEX-001
+ * @satisfy{@req{285}}
  */
 #define K_MUTEX_DEFINE(name) \
 	Z_STRUCT_SECTION_ITERABLE(k_mutex, name) = \
@@ -3266,7 +3266,7 @@ struct k_mutex {
  * @param mutex Address of the mutex.
  *
  * @return N/A
- * @req K-MUTEX-002
+ * @satisfy{@req{285}}
  */
 __syscall void k_mutex_init(struct k_mutex *mutex);
 
@@ -3288,7 +3288,9 @@ __syscall void k_mutex_init(struct k_mutex *mutex);
  * @retval 0 Mutex locked.
  * @retval -EBUSY Returned without waiting.
  * @retval -EAGAIN Waiting period timed out.
- * @req K-MUTEX-002
+ * @satisfy{@req{283}}
+ * @satisfy{@req{284}}
+ * @satisfy{@req{286}}
  */
 __syscall int k_mutex_lock(struct k_mutex *mutex, s32_t timeout);
 
@@ -3305,7 +3307,10 @@ __syscall int k_mutex_lock(struct k_mutex *mutex, s32_t timeout);
  * @param mutex Address of the mutex.
  *
  * @return N/A
- * @req K-MUTEX-002
+ * @satisfy{@req{283}}
+ * @satisfy{@req{284}}
+ * @satisfy{@req{286}}
+
  */
 __syscall void k_mutex_unlock(struct k_mutex *mutex);
 
